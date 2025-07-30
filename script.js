@@ -3,7 +3,6 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
 
   const usuario = document.getElementById('usuario').value.trim();
   const password = document.getElementById('password').value.trim();
-
   const mensaje = document.getElementById('mensaje');
   mensaje.textContent = "🔍 Consultando...";
 
@@ -16,13 +15,14 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
 
     const data = await response.json();
 
-    if (response.ok && data.ip) {
+    if (response.ok && data && data.ip) {
       mensaje.textContent = "✅ Redirigiendo...";
       window.location.href = `http://${data.ip}:5000/video`;
     } else {
       mensaje.textContent = "❌ Usuario o contraseña incorrectos.";
     }
   } catch (err) {
+    console.error(err);
     mensaje.textContent = "❌ Error al conectar con el servidor.";
   }
 });
