@@ -18,34 +18,21 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
     if (response.ok && data && data.ip) {
       mensaje.textContent = "✅ Cargando video...";
 
-      // Crear interfaz de video dinámicamente
+      // Crear interfaz de video dinámicamente usando la URL ngrok completa
       document.body.innerHTML = `
         <div class="video-container">
-          <video id="videoStream" autoplay controls>
-            <source src="http://${data.ip}:5000/video" type="video/mp4">
-            Tu navegador no soporta el video.
-          </video>
+          <img id="videoStream" src="${data.ip}/video_feed" width="640" height="480" style="border:1px solid black"/>
           <div class="controls">
-            <button id="btnAnterior">⏮</button>
-            <button id="btnRetroceder">⏪</button>
-            <button id="btnPlayPause">⏯</button>
-            <button id="btnAdelantar">⏩</button>
-            <button id="btnSiguiente">⏭</button>
+            <button id="btnCamara">📷 Cámara</button>
           </div>
         </div>
       `;
 
-      const video = document.getElementById('videoStream');
-      const btnPlayPause = document.getElementById('btnPlayPause');
-
-      document.getElementById('btnAnterior').addEventListener('click', () => video.currentTime -= 10);
-      document.getElementById('btnRetroceder').addEventListener('click', () => video.currentTime -= 5);
-      btnPlayPause.addEventListener('click', () => {
-        if (video.paused) video.play();
-        else video.pause();
+      // Evento del botón "Cámara" (aún sin backend)
+      document.getElementById('btnCamara').addEventListener('click', () => {
+        alert("Botón de cámara presionado (funcionalidad pendiente)");
       });
-      document.getElementById('btnAdelantar').addEventListener('click', () => video.currentTime += 5);
-      document.getElementById('btnSiguiente').addEventListener('click', () => video.currentTime += 10);
+
     } else {
       mensaje.textContent = "❌ Usuario o contraseña incorrectos.";
     }
