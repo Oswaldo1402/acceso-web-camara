@@ -21,6 +21,8 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
       // Crear interfaz de video dinámicamente usando la URL ngrok completa
       document.body.innerHTML = `
         <div class="video-container">
+          console.log("URL IP desde Render:", data.ip);
+          console.log("URL final para video:", data.ip.replace(/\/$/, '') + "/video_feed");
           <img id="videoStream" src="${data.ip.replace(/\/$/, '')}/video_feed" width="640" height="480" style="border:1px solid black"/>
           <div class="controls">
             <button id="btnCamara">📷 Cámara</button>
