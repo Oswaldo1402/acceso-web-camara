@@ -7,7 +7,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
   mensaje.textContent = "🔍 Consultando...";
 
   try {
-    const response = await fetch(''https://aparicioia.com/consultar_ip'', {
+    const response = await fetch('https://api.aparicioia.com/consultar_ip', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ usuario, password })
